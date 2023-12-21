@@ -17,16 +17,9 @@ export default function Home() {
 
   const router = useRouter();
   const onClick = (id, title, poster_path) => {
-    router.push(
-      {
-        pathname: `/movies/${id}`,
-        query: {
-          title,
-          poster_path,
-        },
-      },
-      `/movies/${id}`
-    );
+    router.push({
+      pathname: `/movies/${title}/${id}`,
+    });
   };
 
   return (
@@ -46,7 +39,10 @@ export default function Home() {
               />
               {console.log("imgpath", movie.poster_path)}
               <h4>
-                <Link href={`/movies/${movie.id}`} legacyBehavior>
+                <Link
+                  href={`/movies/${movie.title}/${movie.id}`}
+                  legacyBehavior
+                >
                   <a>{movie.title}</a>
                 </Link>
               </h4>
@@ -99,4 +95,11 @@ export default function Home() {
       </style>
     </div>
   );
+}
+
+export function getServerSideProps(ctx) {
+  console.log(ctx);
+  return {
+    props: {},
+  };
 }
