@@ -1,9 +1,9 @@
 import Seo from "@/components/Seo";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import axios, { Axios } from "axios";
 
 export default function Home({ results }) {
-  const [movies, setMovies] = useState([]);
+  // const [movies, setMovies] = useState([]);
   // useEffect(() => {
   //   const fetchMovies = async () => {
   //     const response = await axios.get(`/api/movies`);
