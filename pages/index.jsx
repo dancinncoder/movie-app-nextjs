@@ -16,8 +16,16 @@ export default function Home() {
   }, []);
 
   const router = useRouter();
-  const onClick = (id) => {
-    router.push(`/movies/${id}`);
+  const onClick = (id, title) => {
+    router.push(
+      {
+        pathname: `/movies/${id}`,
+        query: {
+          title,
+        },
+      },
+      `/movies/${id}`
+    );
   };
 
   return (
@@ -30,7 +38,7 @@ export default function Home() {
             <div
               key={movie.id}
               className="movieCard"
-              onClick={() => onClick(movie.id)}
+              onClick={() => onClick(movie.id, movie.title)}
             >
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
