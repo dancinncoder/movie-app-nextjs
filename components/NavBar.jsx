@@ -45,6 +45,7 @@ export default function NavBar() {
           box-shadow: 8px 0 12px -5px gray, -8px 0 12px -5px gray;
           padding: 1rem;
           height: 6rem;
+          width: 32rem;
         }
         img {
           width: 1.5rem;
