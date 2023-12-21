@@ -2,15 +2,11 @@ import Seo from "@/components/Seo";
 import { useEffect, useState } from "react";
 import axios, { Axios } from "axios";
 
-const API_KEY = "3f293a34d9a7aba7fa6b052ed40a7035";
-
 export default function Home() {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const fetchMovies = async () => {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
-      );
+      const response = await axios.get(`/api/movies`);
       setMovies([...response.data.results]);
       console.log("response.data.results", response.data.results);
     };
