@@ -2,6 +2,7 @@ import Seo from "@/components/Seo";
 import { useEffect, useState } from "react";
 import axios, { Axios } from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -14,6 +15,11 @@ export default function Home() {
     fetchMovies();
   }, []);
 
+  const router = useRouter();
+  const onClick = (id) => {
+    router.push(`/movies/${id}`);
+  };
+
   return (
     <div>
       <Seo title="Home" />
@@ -21,17 +27,21 @@ export default function Home() {
       <div className="movieCardContainer">
         {movies?.map((movie) => {
           return (
-            <Link href={`/movies/${movie.id}`} key={movie.id} legacyBehavior>
-              <a>
-                <div className="movieCard">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  />
-                  {console.log("imgpath", movie.poster_path)}
-                  <h4>{movie.title}</h4>
-                </div>
-              </a>
-            </Link>
+            <div
+              key={movie.id}
+              className="movieCard"
+              onClick={() => onClick(movie.id)}
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              />
+              {console.log("imgpath", movie.poster_path)}
+              <h4>
+                <Link href={`/movies/${movie.id}`} legacyBehavior>
+                  <a>{movie.title}</a>
+                </Link>
+              </h4>
+            </div>
           );
         })}
       </div>
