@@ -1,3 +1,4 @@
+import Seo from "@/components/Seo";
 import { useRouter } from "next/router";
 
 // /movies/122
@@ -6,6 +7,7 @@ export default function Detail() {
   console.log("router", router);
   return (
     <div className="selected-moviecard-container">
+      <Seo title={`${router.query.title}`} />
       <img src={`https://image.tmdb.org/t/p/w500${router.query.poster_path}`} />
       <div className="movie-detail-container">
         <h4>{router.query.title}</h4>
@@ -22,7 +24,9 @@ export default function Detail() {
             align-items: flex-start;
             height: 22.5rem;
             width: 18rem;
-            border: 1px solid black;
+             {
+              /* border: 1px solid black; */
+            }
           }
           .selected-moviecard-container {
             display: flex;
@@ -33,7 +37,9 @@ export default function Detail() {
             padding: 1.5rem;
             width: 32rem;
             height: 25rem;
-            border: 1px solid red;
+             {
+              /* border: 1px solid red; */
+            }
           }
           img {
             width: 15rem;
@@ -46,7 +52,9 @@ export default function Detail() {
             }
             max-width: 16rem;
             height: 20%;
-            border: 1px solid pink;
+             {
+              /* border: 1px solid pink; */
+            }
             display: flex;
             align-items: center;
             margin: 0;

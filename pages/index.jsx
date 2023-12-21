@@ -3,16 +3,16 @@ import { useEffect, useState } from "react";
 import axios, { Axios } from "axios";
 import Link from "next/link";
 
-export default function Home() {
-  const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    const fetchMovies = async () => {
-      const response = await axios.get(`/api/movies`);
-      setMovies([...response.data.results]);
-      console.log("response.data.results", response.data.results);
-    };
-    fetchMovies();
-  }, []);
+export default function Home({ movies }) {
+  // const [movies, setMovies] = useState([]);
+  // useEffect(() => {
+  //   const fetchMovies = async () => {
+  //     const response = await axios.get(`/api/movies`);
+  //     setMovies([...response.data.results]);
+  //     console.log("response.data.results", response.data.results);
+  //   };
+  //   fetchMovies();
+  // }, []);
 
   return (
     <div>
@@ -93,4 +93,15 @@ export default function Home() {
       </style>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  // 여기 안에 있는 코드는 모두 server쪽에서만 작동하게 된다
+  const response = await axios.get(`http://localhost:3000/api/movies`);
+  const movies = response.data.results;
+  return {
+    props: {
+      movies,
+    },
+  };
 }
