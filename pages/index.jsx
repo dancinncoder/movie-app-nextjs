@@ -21,7 +21,20 @@ export default function Home() {
       <div className="movieCardContainer">
         {movies?.map((movie) => {
           return (
-            <Link href={`/movies/${movie.id}`} key={movie.id} legacyBehavior>
+            <Link
+              href={{
+                pathname: `/movies/${movie.id}`,
+                query: {
+                  title: movie.title, // movie 객체의 title 속성 사용
+                  poster_path: movie.poster_path,
+                  overview: movie.overview,
+                  vote_average: movie.vote_average,
+                },
+              }}
+              as={`/movies/${movie.id}`}
+              key={movie.id}
+              legacyBehavior
+            >
               <a>
                 <div className="movieCard">
                   <img
