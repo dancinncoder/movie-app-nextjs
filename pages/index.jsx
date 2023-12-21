@@ -1,6 +1,7 @@
 import Seo from "@/components/Seo";
 import { useEffect, useState } from "react";
 import axios, { Axios } from "axios";
+import Link from "next/link";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -20,13 +21,17 @@ export default function Home() {
       <div className="movieCardContainer">
         {movies?.map((movie) => {
           return (
-            <div className="movieCard" key={movie.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              />
-              {console.log("imgpath", movie.poster_path)}
-              <h4>{movie.title}</h4>
-            </div>
+            <Link href={`/movies/${movie.id}`} key={movie.id} legacyBehavior>
+              <a>
+                <div className="movieCard">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  />
+                  {console.log("imgpath", movie.poster_path)}
+                  <h4>{movie.title}</h4>
+                </div>
+              </a>
+            </Link>
           );
         })}
       </div>
